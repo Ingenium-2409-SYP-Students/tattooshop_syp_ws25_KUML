@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import './index.css'; // Importiere das CSS
 
-function App() {
-  const [count, setCount] = useState(0)
+const MobileFriendlyNav = () => {
+    // State, um zu verfolgen, ob das mobile Menü geöffnet ist oder nicht
+    const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    // Funktion, die den Status umschaltet, wenn der Burger-Button geklickt wird
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
 
-export default App
+    return (
+        <header>
+            <nav className="main-nav">
+                {/* Logo oder Name des Studios */}
+                <a href="/App.jsx" id={"menuHome"}>Tattoo Studio</a>
+
+                {/* Der Burger-Button (wird nur auf Mobile sichtbar) */}
+                <button
+                    className="burger-menu"
+                    aria-label="Menü öffnen"
+                    onClick={toggleMenu}
+                >
+                    &#9776; {/* Das Burger-Icon */}
+                </button>
+
+                {/* Die Navigationslinks */}
+                <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
+
+                    <li><a href="/katalog">Katalog</a></li>
+                    <li><a href="/kontakt">Kontakt</a></li>
+
+                    {/* Der Warenkorb-Icon */}
+                    <li><a href="/warenkorb" aria-label="Warenkorb" className="cart-icon-link">🛒</a></li>
+                </ul>
+            </nav>
+        </header>
+
+    );
+};
+
+export default MobileFriendlyNav;

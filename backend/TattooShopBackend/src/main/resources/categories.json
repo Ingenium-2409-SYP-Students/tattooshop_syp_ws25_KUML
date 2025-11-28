@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Tattoo",
+    "description": "Pflege für Tattoos"
+  },
+  {
+    "name": "Piercing",
+    "description": "Desinfektionsmittel und Pflege für Piercings"
+  },
+  {
+    "name": "Schmuck",
+    "description": "Piercingschmuck - Stecker, Kugeln, etc."
+  }
+]

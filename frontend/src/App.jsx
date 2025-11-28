@@ -1,43 +1,21 @@
-import React, { useState } from 'react';
-import './index.css'; // Importiere das CSS
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Startseite from "./Startseite.jsx";
+import Katalog from "./Katalog.jsx";
 
-const MobileFriendlyNav = () => {
-    // State, um zu verfolgen, ob das mobile Menü geöffnet ist oder nicht
-    const [isOpen, setIsOpen] = useState(false);
-
-    // Funktion, die den Status umschaltet, wenn der Burger-Button geklickt wird
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
-
+function App() {
     return (
-        <header>
-            <nav className="main-nav">
-                {/* Logo oder Name des Studios */}
-                <a href="/App.jsx" id={"menuHome"}>Tattoo Studio</a>
+        <Router>
+            <Routes>
 
-                {/* Der Burger-Button (wird nur auf Mobile sichtbar) */}
-                <button
-                    className="burger-menu"
-                    aria-label="Menü öffnen"
-                    onClick={toggleMenu}
-                >
-                    &#9776; {/* Das Burger-Icon */}
-                </button>
+                {/* Startseite = dein früheres App.jsx */}
+                <Route path="/" element={<Startseite />} />
 
-                {/* Die Navigationslinks */}
-                <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
+                {/* Katalog-Seite */}
+                <Route path="/katalog" element={<Katalog />} />
 
-                    <li><a href="/katalog">Katalog</a></li>
-                    <li><a href="/kontakt">Kontakt</a></li>
-
-                    {/* Der Warenkorb-Icon */}
-                    <li><a href="/warenkorb" aria-label="Warenkorb" className="cart-icon-link">🛒</a></li>
-                </ul>
-            </nav>
-        </header>
-
+            </Routes>
+        </Router>
     );
-};
+}
 
-export default MobileFriendlyNav;
+export default App;

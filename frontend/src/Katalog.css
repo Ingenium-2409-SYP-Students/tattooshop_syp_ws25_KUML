@@ -1,0 +1,38 @@
+/* -----------------------------------
+   TABELLE
+----------------------------------- */
+
+table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background: #f4f4f4;
+    font-weight: 600;
+    text-align: left;
+}
+
+td, th {
+    padding: 10px;
+}
+
+/* -----------------------------------
+   PRODUKTBILDER
+----------------------------------- */
+
+td img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #e1e1e1;
+    transition: 0.2s ease-in-out;
+}
+
+td img:hover {
+    transform: scale(1.15);
+    border-color: #d9b25f; /* Honigfarbe */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}

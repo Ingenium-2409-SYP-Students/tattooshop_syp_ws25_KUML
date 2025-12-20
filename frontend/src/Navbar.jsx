@@ -6,20 +6,22 @@ const Navbar = () => {
 
     return (
         <nav className="main-nav">
-            <Link to="/">Tattoo Studio</Link>
+            <div className="nav-inner">
+                <Link to="/">Tattoo Studio</Link>
 
-            <button
-                className="burger-menu"
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                &#9776;
-            </button>
+                <button
+                    className="burger-menu"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    &#9776;
+                </button>
 
-            <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-                <li><Link to="/katalog">Katalog</Link></li>
-                <li><Link to="/kontakt">Kontakt</Link></li>
-                <li><Link to="/warenkorb">🛒</Link></li>
-            </ul>
+                <ul className={`nav-links ${isOpen ? "open" : ""}`}>
+                    <li><Link to="/katalog">Katalog</Link></li>
+                    <li><Link to="/kontakt">Kontakt</Link></li>
+                    <li><Link to="/warenkorb">🛒</Link></li>
+                </ul>
+            </div>
         </nav>
     );
 };

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import ExpenseForm from "./components/ExpenseForm.jsx";
+import Katalog from "./Katalog.jsx";
 
-function ProductManager({products}) {
+function ProductManager() {
     // initialize expenses as empty array
     const [products, setProducts] = useState([]);
 
@@ -9,13 +9,16 @@ function ProductManager({products}) {
     useEffect(() => {
         fetch("http://localhost:8080/api/products")
             .then(response => response.json())
-            .then(data => setProducts(data));
+            .then(data => {
+                setProducts(data);
+                console.log(data)
+            });
     }, []);
 
     return (
-        <div style={{ maxWidth: "700px", margin: "2rem auto", fontFamily: "Arial" }}>
+        <div style={{ fontFamily: "Arial" }}>
 
-            <ProductTable products={products}  />
+            <Katalog products={products}  />
         </div>
     );
 

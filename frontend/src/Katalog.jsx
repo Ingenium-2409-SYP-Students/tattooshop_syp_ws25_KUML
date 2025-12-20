@@ -1,61 +1,91 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
+import "./Katalog.css";
 
-const Katalog = () => {
+const BACKEND_URL = "http://localhost:8080";
 
+const Katalog = ({ products }) => {
     const [activeFilter, setActiveFilter] = useState("alle");
 
-    const handleFilter = (category) => {
-        if (category === "piercing") {
-            setActiveFilter("piercing");
-        } else if (category === "tattoo") {
-            setActiveFilter("tattoo");
-        } else if (category === "schmuck") {
-            setActiveFilter("schmuck");
-        } else {
-            setActiveFilter("alle");
-        }
-    };
+    const filteredProducts =
+        activeFilter === "alle"
+            ? products
+            : products.filter(
+                (p) => p.category.name.toLowerCase() === activeFilter
+            );
 
     return (
         <>
             <Navbar />
 
-            <div className="filter-bar">
+            <div className="page-wrapper">
+                <div className="filter-bar">
+                    <span
+                        className={`filter-link ${activeFilter === "piercing" ? "active" : ""}`}
+                        onClick={() => setActiveFilter("piercing")}
+                    >
+                        Piercing
+                    </span>
+                    <span
+                        className={`filter-link ${activeFilter === "tattoo" ? "active" : ""}`}
+                        onClick={() => setActiveFilter("tattoo")}
+                    >
+                        Tattoo
+                    </span>
+                    <span
+                        className={`filter-link ${activeFilter === "schmuck" ? "active" : ""}`}
+                        onClick={() => setActiveFilter("schmuck")}
+                    >
+                        Schmuck
+                    </span>
+                    <span
+                        className={`filter-link ${activeFilter === "alle" ? "active" : ""}`}
+                        onClick={() => setActiveFilter("alle")}
+                    >
+                        Alle
+                    </span>
+                </div>
 
-                <span
-                    className={`filter-link ${activeFilter === "piercing" ? "active" : ""}`}
-                    onClick={() => handleFilter("piercing")}
-                >
-                    Piercing
-                </span>
+                <h2>Katalog ({filteredProducts.length} Produkte)</h2>
 
-                <span
-                    className={`filter-link ${activeFilter === "tattoo" ? "active" : ""}`}
-                    onClick={() => handleFilter("tattoo")}
-                >
-                    Tattoo
-                </span>
+                <div className="product-grid">
+                    {filteredProducts.map((product) => (
+                        <div key={product.id} className="product-card">
+                            <div className="product-image-container">
+                                {product.image ? (
+                                    <img
+                                        src={`${BACKEND_URL}/${product.image}`}
+                                        alt={product.name}
+                                        className="product-image"
+                                    />
+                                ) : (
+                                    <span className="no-image">Kein Bild</span>
+                                )}
+                            </div>
 
-                <span
-                    className={`filter-link ${activeFilter === "schmuck" ? "active" : ""}`}
-                    onClick={() => handleFilter("schmuck")}
-                >
-                    Schmuck
-                </span>
+                            <div className="product-info">
+                                <h3 className="product-name">{product.name}</h3>
+                                <p className="product-category">
+                                    Kategorie: {product.category.name}
+                                </p>
 
-                <span
-                    className={`filter-link ${activeFilter === "alle" ? "active" : ""}`}
-                    onClick={() => handleFilter("alle")}
-                >
-                    Alle
-                </span>
+                                {product.price ? (
+                                    <p className="product-price">
+                                        {new Intl.NumberFormat("de-DE", {
+                                            style: "currency",
+                                            currency: "EUR",
+                                        }).format(product.price)}
+                                    </p>
+                                ) : (
+                                    <p className="product-price-placeholder">
+                                        Preis auf Anfrage
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-
-            <main className="container">
-                <h1>Produkte erscheinen hier</h1>
-                <p>Aktiver Filter: <strong>{activeFilter}</strong></p>
-            </main>
         </>
     );
 };

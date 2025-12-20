@@ -5,7 +5,7 @@ const Startseite = () => {
         <>
             <Navbar />
 
-            <main className="container">
+            <main className="page-wrapper">
                 <h1>Ihr Professioneller Tattoo Shop</h1>
                 <img src="src/assets/img.png" alt="Tattoo" id="tattooImg" />
                 <p>I'm baby kinfolk hoodie chartreuse austin.</p>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import "./Katalog.css";
+import { Link } from "react-router-dom";
 
 const BACKEND_URL = "http://localhost:8080";
 
@@ -51,6 +52,10 @@ const Katalog = ({ products }) => {
                 <div className="product-grid">
                     {filteredProducts.map((product) => (
                         <div key={product.id} className="product-card">
+                            <Link
+                                to={`/produkt/${product.id}`}
+                                state={product}
+                            >
                             <div className="product-image-container">
                                 {product.image ? (
                                     <img
@@ -62,6 +67,7 @@ const Katalog = ({ products }) => {
                                     <span className="no-image">Kein Bild</span>
                                 )}
                             </div>
+                            </Link>
 
                             <div className="product-info">
                                 <h3 className="product-name">{product.name}</h3>

@@ -1,0 +1,141 @@
+[
+  {
+    "productId": 1,
+    "image": "1",
+    "name": "Titan Labret",
+    "price": 7.65,
+    "quantity": "1 Stück",
+    "description": "Titan - Labret mit Innengewinde Kristalldisc",
+    "longDescription": "Dieses stilvolle Labret ist aus hochwertigem Titan gefertigt, das auch für Materialeigenschaften wie besonders gute Hautverträglichkeit und hohe Beständigkeit bekannt ist. Ebenfalls zu seinen Vorzügen gehört Farbechtheit. Das Labret verfügt über eine zeitlos schöne Schraubdisc mit Außengewinde und einem funkelndem Kristall, hat eine Stabstärke von 1,2. Darüber hinaus kann sein 0,9 mm Innengewinde nach Belieben mit all unseren anderen Schraubaufsätzen mit entsprechendem Außengewinde kombiniert werden.",
+    "details": {
+      "Material": "Titan (Grad 23)",
+      "Oberfläche": "hochglanzpoliert",
+      "Materialfarbe": "silberfarben",
+      "Kristallfarbe": "kristallklar",
+      "Stabstärke": "1,2 mm",
+      "Stablänge": "5 mm",
+      "Gewinde": "0,9 mm",
+      "Discgröße": "5 mm",
+      "Höhe der Platte": "0,8 mm",
+      "Durchmesser der Platte": "4 mm"
+    }
+  },
+  {
+    "productId": 2,
+    "image": "2",
+    "name": "Tragus Helix",
+    "price": 12.35,
+    "quantity": "1 Stück",
+    "description": "Ausgefallener Körperschmuck aus Chirurgenstahl",
+    "longDescription": "Dieser ausgefallene Körperschmuck aus Chirurgenstahl kann als Ohrpiercing, Helix, Tragus, Cartilage, Knorpel, Ohr, Conch, Rook, Daith, Snug, Lobe, Ohrring, Ohrschmuck, Ohrringe, Ohrstecker, Helixpiercing oder Ohrknorpel Piercing getragen werden.",
+    "details": {
+      "Marke": "Piersando",
+      "Material": "316 L Chirurgenstahl",
+      "Stablänge": "6 mm",
+      "Stabstärke": "1,2 mm",
+      "Ringdurchmesser": "13 mm",
+      "Kettenlänge": "70 mm",
+      "Kugelgröße": "4 mm",
+      "Farbe": "Silber"
+    }
+  },
+  {
+    "productId": 3,
+    "image": "3",
+    "name": "Piercing mit Glitzerkugeln Kristall",
+    "price": 11.95,
+    "quantity": "1 Stück",
+    "description": "Bauchnabelpiercing mit zwei Glitzerkugeln",
+    "longDescription": "Bauchnabelpiercing mit zwei Glitzerkugeln in kristallklarer und schwarz gepunkteter Ausführung. Angenehm zu tragen.",
+    "details": {
+      "Material": "Chirurgenstahl 316L",
+      "Stabstärke": "1,6 mm",
+      "Stablänge": "6 mm",
+      "Kugelgröße": "5 mm"
+    }
+  },
+  {
+    "productId": 4,
+    "image": "4",
+    "name": "Bullfrog Tattoo Shine Butter",
+    "price": 17.60,
+    "quantity": "100 ml",
+    "description": "Tattoo-Pflegebalsam für strahlende Tattoos",
+    "longDescription": "Tattoo-Pflegebalsam, entwickelt um Tattoo-Designs und Farben zu intensivieren und ein strahlendes Finish zu verleihen. Spendet Feuchtigkeit und pflegt die tätowierte Haut.",
+    "details": {
+      "Hersteller": "Bullfrog",
+      "Marke": "Bullfrog",
+      "Nettovolumen": "100 ml",
+      "Duftrichtung": "Sheabutter",
+      "Hauttyp": "Alle"
+    }
+  },
+  {
+    "productId": 5,
+    "image": "5",
+    "name": "Tattoocreme Aftercare Tattoo Balm",
+    "price": 13.99,
+    "quantity": "75 g",
+    "description": "Aftercare Creme für Tattoos",
+    "longDescription": "Speziell für die Anwendung vor, während und nach dem Tätowieren. Hilft, die Regeneration und Feuchtigkeitsversorgung der Haut zu beschleunigen und verstärkt die Farbintensität.",
+    "details": {
+      "Hersteller": "P-beauty",
+      "Marke": "Tattoo Balm",
+      "Nettovolumen": "75 g",
+      "Duftrichtung": "Sheabutter",
+      "Hauttyp": "Alle"
+    }
+  },
+  {
+    "productId": 6,
+    "image": "6",
+    "name": "Tattoo Hustle Butter Deluxe Original",
+    "price": 30.00,
+    "quantity": "150 ml",
+    "description": "Vegane Tattoo Butter",
+    "longDescription": "Hustle Butter Deluxe ist ein 100% natürlicher, organischer und veganer Ersatz für alle Mineralölprodukte. Fördert die Heilung, reduziert Rötung und Schwellung und ersetzt Vaseline beim Tätowieren.",
+    "details": {
+      "Inhaltsstoffe": "Mango-, Kokos-, Papaya- und Shea-Butter",
+      "Eigenschaften": "vegan, organisch, hautpflegend"
+    }
+  },
+  {
+    "productId": 7,
+    "image": "7",
+    "name": "ProntoLind® Piercing Spray",
+    "price": 6.59,
+    "quantity": "75 ml",
+    "description": "Antiseptisches Spray für Piercings",
+    "longDescription": "ProntoLind® Piercingspray reinigt schwer zugängliche Areale und dringt selbstständig in den Stichkanal ein. Wirkt antimikrobiell und fördert die Abheilung.",
+    "details": {
+      "Anwendung": "Piercingpflege",
+      "Wirkung": "antimikrobiell, heilungsfördernd"
+    }
+  },
+  {
+    "productId": 8,
+    "image": "8",
+    "name": "TattooMed After Piercing Spray",
+    "price": 9.06,
+    "quantity": "75 ml",
+    "description": "Reinigungsspray für Piercings",
+    "longDescription": "TattooMed After Piercing Spray bietet optimalen hygienischen Schutz und fördert die Abheilung. Auch zur täglichen Reinigung geeignet.",
+    "details": {
+      "Anwendung": "Piercingpflege",
+      "Eigenschaft": "reizarm, desinfizierend"
+    }
+  },
+  {
+    "productId": 9,
+    "image": "9",
+    "name": "TattooMed® after tattoo",
+    "price": 12.29,
+    "quantity": "100 ml",
+    "description": "Pflegecreme für frische Tattoos",
+    "longDescription": "TattooMed® after tattoo ist für die Behandlung frisch tätowierter Haut ab dem ersten Tag. Unterstützt die Regeneration, lindert Juckreiz und fettet nicht.",
+    "details": {
+      "Wirkstoff": "Dexpanthenol 7%",
+      "Eigenschaften": "regenerierend, hautberuhigend"
+    }
+  }
+]

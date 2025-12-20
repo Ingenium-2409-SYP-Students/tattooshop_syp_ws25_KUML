@@ -1,38 +1,150 @@
+/* Globale Reset-Regeln */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
 /* -----------------------------------
-   TABELLE
+   FILTER BAR STYLING
+----------------------------------- */
+.filter-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e1e1e1;
+    overflow-x: auto;
+}
+
+.filter-link {
+    cursor: pointer;
+    font-weight: 500;
+    color: #555;
+    transition: color 0.2s, border-bottom 0.2s;
+    padding-bottom: 5px;
+    white-space: nowrap;
+}
+
+.filter-link:hover {
+    color: #d9b25f;
+}
+
+.filter-link.active {
+    color: #d9b25f;
+    border-bottom: 2px solid #d9b25f;
+    font-weight: 600;
+}
+
+/* -----------------------------------
+   LAYOUT/HEADER ANPASSUNG
+----------------------------------- */
+h2 {
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+/* -----------------------------------
+   PRODUKT-GRID-ANSICHT
 ----------------------------------- */
 
-table {
-    background: white;
-    border-radius: 8px;
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+    padding: 20px; /* Innenabstand für die Grid-Fläche */
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.product-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    background-color: #f8f8f8;
     overflow: hidden;
 }
 
-th {
-    background: #f4f4f4;
-    font-weight: 600;
-    text-align: left;
-}
-
-td, th {
-    padding: 10px;
-}
-
-/* -----------------------------------
-   PRODUKTBILDER
------------------------------------ */
-
-td img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
+.product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border: 2px solid #e1e1e1;
-    transition: 0.2s ease-in-out;
+    transition: transform 0.3s ease;
 }
 
-td img:hover {
-    transform: scale(1.15);
-    border-color: #d9b25f; /* Honigfarbe */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.no-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #aaa;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.product-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.product-category {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #d9b25f;
+}
+
+.product-price-placeholder {
+    font-size: 1.0rem;
+    color: #888;
+    font-style: italic;
+}
+
+.no-products-message {
+    text-align: center;
+    color: #777;
+    margin-top: 50px;
+    font-size: 1.1rem;
+    padding: 0 20px;
 }

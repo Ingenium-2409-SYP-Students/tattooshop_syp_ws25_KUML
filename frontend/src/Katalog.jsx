@@ -2,21 +2,31 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import "./Katalog.css";
 
+// Basis-URL des Backends für die Bildpfade
+const BACKEND_URL = "http://localhost:8080";
+
 const Katalog = ({ products }) => {
     const [activeFilter, setActiveFilter] = useState("alle");
 
     const handleFilter = (category) => {
+        // Setzt den Filter auf Kleinbuchstaben für einen einfachen Vergleich
         setActiveFilter(category.toLowerCase());
     };
 
-    // Produkte filtern
-    const filteredProducts = products;
-    /*
-        activeFilter === "alle"
-            ? products
-            : products.filter(
-                (p) => p.category.name.toLowerCase() === activeFilter
-            );*/
+    // Produkte filtern: Die Logik ist jetzt AKTIVIERT und nutzt den Category-Namen
+    const filteredProducts = activeFilter === "alle"
+        ? products
+        : products.filter(
+            // Filtert die Produkte, deren Kategorie-Name (klein geschrieben) dem aktiven Filter entspricht
+            (p) => p.category.name.toLowerCase() === activeFilter
+        );
+
+    // Funktion zur Weiterleitung auf eine Detailseite vorbereiten (Platzhalter)
+    const handleProductClick = (productId) => {
+        // Hier würde die Routing-Logik für die Detailseite eingefügt werden.
+        console.log(`Produkt mit ID ${productId} wurde angeklickt.`);
+        // Beispiel: navigate(`/products/${productId}`);
+    };
 
     return (
         <>
@@ -24,6 +34,7 @@ const Katalog = ({ products }) => {
 
             {/* Filter-Leiste */}
             <div className="filter-bar">
+                {/* Die Filter-Links bleiben, die Kategorie-Namen entsprechen den Kategorien im Backend */}
                 <span
                     className={`filter-link ${activeFilter === "piercing" ? "active" : ""}`}
                     onClick={() => handleFilter("piercing")}
@@ -39,6 +50,8 @@ const Katalog = ({ products }) => {
                 </span>
 
                 <span
+                    // ACHTUNG: Der Filter muss dem Category-Namen im Backend entsprechen.
+                    // Wenn die Produkte der Kategorie "Schmuck" zugeordnet sind, muss der Filter "schmuck" sein.
                     className={`filter-link ${activeFilter === "schmuck" ? "active" : ""}`}
                     onClick={() => handleFilter("schmuck")}
                 >
@@ -53,44 +66,62 @@ const Katalog = ({ products }) => {
                 </span>
             </div>
 
-            <h2>Katalog</h2>
+            <h2>Katalog ({filteredProducts?.length || 0} Produkte)</h2>
 
-            <table border="1" cellPadding="8" style={{ width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Kategorie</th>
-                    <th>Beschreibung</th>
-                    <th>Bild</th>
-                </tr>
-                </thead>
-
-                <tbody>
+            {/* NEUE RESPONSIVE GRID-ANSICHT */}
+            <div className="product-grid">
                 {filteredProducts?.map((product) => (
-                    <tr key={product.id}>
-                        <td>{product.name}</td>
-                        <td>{product.category.name}</td>
-                        <td>{product.description}</td>
-                        <td>
+                    <div
+                        key={product.id}
+                        className="product-card"
+                        onClick={() => handleProductClick(product.id)}
+                    >
+                        {/* 1. Bild */}
+                        <div className="product-image-container">
                             {product.image ? (
                                 <img
-                                    src={product.image}
+                                    src={`${BACKEND_URL}/${product.image}`}
                                     alt={product.name}
-                                    style={{
-                                        width: "80px",
-                                        height: "80px",
-                                        objectFit: "cover",
-                                        borderRadius: "10px"
-                                    }}
+                                    className="product-image"
                                 />
                             ) : (
-                                <span>kein Bild</span>
+                                <span className="no-image">Kein Bild</span>
                             )}
-                        </td>
-                    </tr>
+                        </div>
+
+                        {/* 2. Produktinformationen */}
+                        <div className="product-info">
+                            <h3 className="product-name">{product.name}</h3>
+                            <p className="product-category">
+                                Kategorie: {product.category.name}
+                            </p>
+
+                            {/* Preis anzeigen (Annahme: Product hat ein price-Feld) */}
+                            {/* Wenn Ihre Produkte keinen Preis haben, können Sie diesen Block entfernen */}
+                            {product.price && (
+                                <p className="product-price">
+                                    {new Intl.NumberFormat('de-DE', {
+                                        style: 'currency',
+                                        currency: 'EUR'
+                                    }).format(product.price)}
+                                </p>
+                            )}
+
+                            {/* Falls kein Preis vorhanden ist, fügen wir einen Platzhalter-Preis ein */}
+                            {!product.price && (
+                                <p className="product-price-placeholder">Preis auf Anfrage</p>
+                            )}
+                        </div>
+                    </div>
                 ))}
-                </tbody>
-            </table>
+            </div>
+
+            {/* Meldung, falls keine Produkte gefunden wurden */}
+            {filteredProducts?.length === 0 && (
+                <p className="no-products-message">
+                    Es wurden keine Produkte für die Kategorie "{activeFilter}" gefunden.
+                </p>
+            )}
         </>
     );
 };

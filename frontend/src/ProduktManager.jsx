@@ -16,7 +16,7 @@ function ProductManager() {
     }, []);
 
     return (
-        <div style={{ maxWidth: "700px", margin: "2rem auto", fontFamily: "Arial" }}>
+        <div style={{ fontFamily: "Arial" }}>
 
             <Katalog products={products}  />
         </div>

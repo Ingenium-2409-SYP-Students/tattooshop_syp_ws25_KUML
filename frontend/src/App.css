@@ -9,25 +9,29 @@ body {
     background-color: white;
     color: black;
 }
-p{
+
+p,
+a,
+button {
     font-size: 1.2rem;
 }
-a{
-    font-size: 1.2rem;
-}
-button{
-    font-size: 1.2rem;
-}
+
 .main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 25px;
+    width: 100%;
     background-color: black;
-    color: white;
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
 }
 
 .main-nav a {
@@ -51,26 +55,22 @@ button{
     cursor: pointer;
 }
 
-.container {
-    width: 95%;
+.page-wrapper {
+    width: 100%;
     max-width: 1100px;
     margin: 20px auto;
     padding: 20px;
-    border-radius: 25px;
-    background-color: lightgray;
     text-align: center;
 }
 
 #tattooImg {
     width: 20em;
-    height: auto;
     display: block;
     margin: 20px auto;
     border-radius: 8px;
 }
 
 @media (max-width: 768px) {
-
     .nav-links {
         display: none;
         flex-direction: column;
@@ -92,39 +92,6 @@ button{
         display: block;
     }
 }
-.filter-bar {
-    width: 95%;
-    max-width: 1100px;
-    margin: 20px auto;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: center;
-}
-
-/* Icon links */
-.filter-icon {
-    font-size: 1.4rem;
-    opacity: 0.7;
-}
-
-/* Links (keine Buttons) */
-.filter-link {
-    font-size: 1rem;
-    cursor: pointer;
-    color: gray;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-/* Hover Effekt */
-.filter-link:hover {
-    color: black;
-}
-
-/* Aktiver Filter */
-.filter-link.active {
-    font-weight: bold;
-    color: black;
-    text-decoration: underline;
+.container{
+    text-align: center;
 }

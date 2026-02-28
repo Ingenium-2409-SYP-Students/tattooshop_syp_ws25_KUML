@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "./Navbar";
 import { getCartItems, removeFromCart } from "./cartStorage.jsx";
+import "./Warenkorb.css";
 
 const BACKEND_URL = "http://localhost:8080";
 
@@ -18,12 +19,21 @@ const Warenkorb = () => {
     }, []);
 
     const totalPrice = useMemo(
-        () => cartItems.reduce((sum, item) => sum + (item.price || 0), 0),
+        () =>
+            cartItems.reduce(
+                (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
+                0
+            ),
         [cartItems]
     );
 
-    const handleRemove = (index) => {
-        const updatedCart = removeFromCart(index);
+    const totalQuantity = useMemo(
+        () => cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0),
+        [cartItems]
+    );
+
+    const handleRemove = (productId) => {
+        const updatedCart = removeFromCart(productId);
         setCartItems(updatedCart);
     };
 
@@ -31,57 +41,87 @@ const Warenkorb = () => {
         <>
             <Navbar />
 
-            <main className="container">
-                <h1>Warenkorb</h1>
+            <main className="warenkorb-page">
+                <div className="warenkorb-header">
+                    <h1>Warenkorb</h1>
+                    <p>Hier findest du alle Produkte, die du hinzugefügt hast.</p>
+                </div>
 
                 {cartItems.length === 0 ? (
-                    <p>Dein Warenkorb ist leer.</p>
+                    <div className="warenkorb-empty">
+                        <h2>Dein Warenkorb ist leer</h2>
+                        <p>Füge ein Produkt hinzu, um es hier zu sehen.</p>
+                    </div>
                 ) : (
-                    <>
-                        <ul style={{ listStyle: "none", padding: 0 }}>
-                            {cartItems.map((item, index) => (
-                                <li
-                                    key={`${item.id}-${index}`}
-                                    style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "1rem",
-                                        borderBottom: "1px solid #ddd",
-                                        padding: "1rem 0",
-                                    }}
-                                >
-                                    {item.image && (
-                                        <img
-                                            src={`${BACKEND_URL}/${item.image}`}
-                                            alt={item.name}
-                                            style={{
-                                                width: "90px",
-                                                height: "90px",
-                                                objectFit: "cover",
-                                                borderRadius: "8px",
-                                            }}
-                                        />
-                                    )}
-
-                                    <div style={{ flex: 1 }}>
-                                        <h3 style={{ margin: 0 }}>{item.name}</h3>
-                                        <p style={{ margin: "0.25rem 0" }}>
-                                            Kategorie: {item.category}
-                                        </p>
-                                        <p style={{ margin: 0 }}>
-                                            Preis: {formatPrice(item.price)}
-                                        </p>
+                    <div className="warenkorb-layout">
+                        <div className="warenkorb-list">
+                            {cartItems.map((item) => (
+                                <div className="warenkorb-card" key={item.id}>
+                                    <div className="warenkorb-image-wrapper">
+                                        {item.image && (
+                                            <img
+                                                src={`${BACKEND_URL}/${item.image}`}
+                                                alt={item.name}
+                                                className="warenkorb-image"
+                                            />
+                                        )}
                                     </div>
 
-                                    <button onClick={() => handleRemove(index)}>
-                                        Entfernen
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
+                                    <div className="warenkorb-info">
+                                        <h3>{item.name}</h3>
+                                        <p className="warenkorb-category">
+                                            Kategorie: {item.category}
+                                        </p>
 
-                        <h2>Gesamtsumme: {formatPrice(totalPrice)}</h2>
-                    </>
+                                        <div className="warenkorb-details">
+                                            <span>Stückzahl: {item.quantity || 1}</span>
+                                            <span>
+                                                Einzelpreis: {formatPrice(item.price)}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className="warenkorb-side">
+                                        <p className="warenkorb-item-total">
+                                            {formatPrice(
+                                                (item.price || 0) * (item.quantity || 1)
+                                            )}
+                                        </p>
+
+                                        <button
+                                            className="warenkorb-remove-btn"
+                                            onClick={() => handleRemove(item.id)}
+                                        >
+                                            Entfernen
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <aside className="warenkorb-summary">
+                            <h2>Bestellübersicht</h2>
+
+                            <div className="summary-row">
+                                <span>Artikel</span>
+                                <span>{cartItems.length}</span>
+                            </div>
+
+                            <div className="summary-row">
+                                <span>Gesamtstücke</span>
+                                <span>{totalQuantity}</span>
+                            </div>
+
+                            <div className="summary-total">
+                                <span>Gesamtsumme</span>
+                                <strong>{formatPrice(totalPrice)}</strong>
+                            </div>
+
+                            <button className="checkout-btn">
+                                Zur Kassa
+                            </button>
+                        </aside>
+                    </div>
                 )}
             </main>
         </>

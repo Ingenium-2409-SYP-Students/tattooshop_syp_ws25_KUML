@@ -17,15 +17,39 @@ export function getCartItems() {
 
 export function addToCart(product) {
     const currentCart = getCartItems();
-    const updatedCart = [...currentCart, product];
+
+    const existingProductIndex = currentCart.findIndex(
+        (item) => item.id === product.id
+    );
+
+    let updatedCart;
+
+    if (existingProductIndex !== -1) {
+        updatedCart = currentCart.map((item, index) =>
+            index === existingProductIndex
+                ? {
+                    ...item,
+                    quantity: (item.quantity || 1) + (product.quantity || 1),
+                }
+                : item
+        );
+    } else {
+        updatedCart = [
+            ...currentCart,
+            {
+                ...product,
+                quantity: product.quantity || 1,
+            },
+        ];
+    }
 
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCart));
     return updatedCart;
 }
 
-export function removeFromCart(indexToRemove) {
+export function removeFromCart(productId) {
     const currentCart = getCartItems();
-    const updatedCart = currentCart.filter((_, index) => index !== indexToRemove);
+    const updatedCart = currentCart.filter((item) => item.id !== productId);
 
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCart));
     return updatedCart;

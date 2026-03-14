@@ -1,31 +1,37 @@
 package at.kolleg.tattooshopbackend.model;
 
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "category")
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-
+@AllArgsConstructor // Hilfreich für Tests und manuelle Initialisierung
+@Entity
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+    private Integer id;
 
-    @JsonProperty("name")
-    String name;
+    private String name;
 
-    @JsonProperty("description")
-    String description;
+    private String description;
 
 
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Product> products = new ArrayList<>();
+
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

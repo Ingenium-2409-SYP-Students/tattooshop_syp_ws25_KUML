@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "./Navbar";
-import { getCartItems, removeFromCart } from "./cartStorage.jsx";
+import { getCartItems, removeFromCart, clearCart } from "./cartStorage.jsx";
 import "./Warenkorb.css";
 
 const BACKEND_URL = "http://localhost:8080";
@@ -13,6 +13,7 @@ const formatPrice = (price) =>
 
 const Warenkorb = () => {
     const [cartItems, setCartItems] = useState([]);
+    const [orderSent, setOrderSent] = useState(false);
 
     useEffect(() => {
         setCartItems(getCartItems());
@@ -37,6 +38,12 @@ const Warenkorb = () => {
         setCartItems(updatedCart);
     };
 
+    const handleCheckout = () => {
+        clearCart();
+        setCartItems([]);
+        setOrderSent(true);
+    };
+
     return (
         <>
             <Navbar />
@@ -47,7 +54,14 @@ const Warenkorb = () => {
                     <p>Hier findest du alle Produkte, die du hinzugefügt hast.</p>
                 </div>
 
-                {cartItems.length === 0 ? (
+                {orderSent ? (
+                    <div className="warenkorb-success">
+                        <h2>Vielen Dank für Ihren Einkauf!</h2>
+                        <p>
+                            Ihre Artikel werden zeitnah versendet.
+                        </p>
+                    </div>
+                ) : cartItems.length === 0 ? (
                     <div className="warenkorb-empty">
                         <h2>Dein Warenkorb ist leer</h2>
                         <p>Füge ein Produkt hinzu, um es hier zu sehen.</p>
@@ -117,7 +131,10 @@ const Warenkorb = () => {
                                 <strong>{formatPrice(totalPrice)}</strong>
                             </div>
 
-                            <button className="checkout-btn">
+                            <button
+                                className="checkout-btn"
+                                onClick={handleCheckout}
+                            >
                                 Zur Kassa
                             </button>
                         </aside>

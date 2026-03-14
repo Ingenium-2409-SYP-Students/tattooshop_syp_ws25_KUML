@@ -14,9 +14,12 @@
     grid-template-columns: 1.15fr 0.85fr;
     gap: 28px;
     align-items: start;
+
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-/* LINKS */
+
 .detail-left {
     display: flex;
     justify-content: center;
@@ -41,14 +44,13 @@
     border-radius: 12px;
 }
 
-/* RECHTS */
 .detail-right {
     display: flex;
     flex-direction: column;
     gap: 14px;
 
     padding: 18px;
-    background: #f6f6f6;     /* gleiche Farbe wie imageWrap */
+    background: #f6f6f6;
     border-radius: 14px;
 }
 
@@ -77,7 +79,6 @@
     font-weight: 800;
 }
 
-/* BUY ROW */
 .detail-buyRow {
     display: grid;
     grid-template-columns: 150px 1fr;
@@ -134,7 +135,6 @@
 .add-btn:active {
     transform: scale(0.98);
 }
-}
 
 .added-msg {
     margin: 0;
@@ -145,7 +145,6 @@
     font-weight: 600;
 }
 
-/* ACCORDION */
 .accordion {
     border: 1px solid #e6e6e6;
     border-radius: 12px;
@@ -215,7 +214,6 @@
     text-align: right;
 }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
     .detail-grid {
         grid-template-columns: 1fr;

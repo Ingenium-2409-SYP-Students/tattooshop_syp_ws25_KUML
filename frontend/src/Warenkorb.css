@@ -197,3 +197,23 @@
         justify-content: center;
     }
 }
+.warenkorb-success {
+    background: #f3fff1;
+    border: 1px solid #c9f1c2;
+    border-radius: 18px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.warenkorb-success h2 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.8rem;
+}
+
+.warenkorb-success p {
+    margin: 0;
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
